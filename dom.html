@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Изучаем DOM JS</title>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
   </head>
   <body>
     <h1 id="main-heading">Приветик, мир!</h1>
 
     <script>
-      var headingElement = document.getElementById('main-heading');
-      console.log(headingElement.innerHTML);
+      // var headingElement = document.getElementById('main-heading');
+      // console.log(headingElement.innerHTML);
       var newHeadingText = prompt('Введите новый заголовок');
       if (newHeadingText !== null) {
-        headingElement.innerHTML = newHeadingText;
+        $('#main-heading').text(newHeadingText);
       } else {
+        alert('Новый заголовок не введен');
         headingElement = document.getElementById('main-heading');
       }
     </script>
