@@ -10,6 +10,7 @@
   <body>
     <h1 id="main-heading">Приветик, мир!</h1>
     <h1>Тренируемся прогать</h1>
+    <p>Новый заголовок для тестирования</p>
 
     <script>
       // var headingElement = document.getElementById('main-heading');
@@ -32,8 +33,12 @@
 
       // $('h1').fadeOut(3000);
       // $('h1').text('Этот текст скоро исчезнет').fadeOut(3000);
-      $('h1').fadeOut(1000).fadeIn(500);
-      $('h1').slideUp(1000).slideDown(1000);
+      // $('h1').fadeOut(1000).fadeIn(500);
+      // $('h1').slideUp(1000).slideDown(1000);
+      for (let i = 0; i < 5; i++) {
+        $('h1').slideUp(1000);
+        $('h1').slideDown(1000);
+      }
     </script>
   </body>
 </html>

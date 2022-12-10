@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>It's my Exercise</title>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+  </head>
+
+  <body>
+    <h1 id="main-heading">Приветик, мир!</h1>
+    <script>
+      let friends = ['Федя', 'Мотя', 'Котя'];
+
+      $('h1').text('Мои друзья');
+
+      for (var i = 0; i < 3; i++) {
+        var hobby = prompt('Послание для ' + friends[i]);
+        $('p').hide().slideDown(3000);
+        $('body').append('<p>' + friends[i] + ' ' + hobby + '</p>');
+      }
+      // $('p').fadeOut(1000).fadeIn(1000);
+    </script>
+  </body>
+</html>
