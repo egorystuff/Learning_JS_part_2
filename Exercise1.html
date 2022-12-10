@@ -15,11 +15,16 @@
 
       $('h1').text('Мои друзья');
 
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < friends.length; i++) {
         var hobby = prompt('Послание для ' + friends[i]);
-        $('p').hide().slideDown(3000);
         $('body').append('<p>' + friends[i] + ' ' + hobby + '</p>');
+        $('p')
+          .last()
+          .hide()
+          .fadeIn((i + 1) * 10000);
       }
+      $('p').append(' лучший');
+
       // $('p').fadeOut(1000).fadeIn(1000);
     </script>
   </body>
