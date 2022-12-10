@@ -23,4 +23,4 @@ var moveHeading = function () {
     leftOffset = 0;
   }
 };
-setInterval(moveHeading, 2);
+setInterval(moveHeading, 1);
