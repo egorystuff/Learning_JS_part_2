@@ -11,11 +11,13 @@ var printMessage = function () {
   console.log('Ты смотришь на монитору уже ' + counter + ' секунд');
   counter++;
 };
+var time = setInterval(printMessage, 1000);
 
 //Подвижный текст
-var intervalId = setInterval(printMessage, 1000);
 var position = 'вправо';
 var offset = 0;
+
+// $('#heading').offset({ left: offset, top: offset });
 
 var moveHeading = function () {
   if (position === 'вправо') {
@@ -48,4 +50,8 @@ var moveHeading = function () {
     }
   }
 };
-setInterval(moveHeading, 5);
+var intervalId = setInterval(moveHeading, 5);
+
+$('#heading').click(function (event) {
+  clearInterval(intervalId);
+});
