@@ -3,7 +3,7 @@ var timeUp = function () {
   alert('Время вышло!');
 };
 
-setTimeout(timeUp, 10000);
+setTimeout(timeUp, 100000);
 
 //таймер отсчета с шагом 10 сек
 var counter = 1;
@@ -14,13 +14,38 @@ var printMessage = function () {
 
 //Подвижный текст
 var intervalId = setInterval(printMessage, 1000);
+var position = 'вправо';
+var offset = 0;
 
-var leftOffset = 0;
 var moveHeading = function () {
-  $('#heading').offset({ left: leftOffset });
-  leftOffset++;
-  if (leftOffset > 1000) {
-    leftOffset = 0;
+  if (position === 'вправо') {
+    $('#heading').offset({ left: offset });
+    offset++;
+    if (offset > 300) {
+      offset = 0;
+      position = 'вниз';
+    }
+  } else if (position === 'вниз') {
+    $('#heading').offset({ top: offset });
+    offset++;
+    if (offset > 300) {
+      offset = 300;
+      position = 'влево';
+    }
+  } else if (position === 'влево') {
+    $('#heading').offset({ left: offset });
+    offset--;
+    if (offset < 0) {
+      offset = 300;
+      position = 'вверх';
+    }
+  } else if (position === 'вверх') {
+    $('#heading').offset({ top: offset });
+    offset--;
+    if (offset < 0) {
+      offset = 0;
+      position = 'вправо';
+    }
   }
 };
-setInterval(moveHeading, 1);
+setInterval(moveHeading, 5);

@@ -9,8 +9,17 @@
   </head>
   <body>
     <h1 id="heading">МЫШКА</h1>
-    <script>
+    <!-- <script>
       $('html').mousemove(function (event) {
+        $('#heading').offset({
+          left: event.pageX,
+          top: event.pageY,
+        });
+      });
+    </script> -->
+
+    <script>
+      $('html').click(function (event) {
         $('#heading').offset({
           left: event.pageX,
           top: event.pageY,
