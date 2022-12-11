@@ -17,7 +17,8 @@
       alt="map for this game"
     />
 
-    <p id="distance"></p>
+    <h2 id="distance"></h2>
+    <h4 id="click_counter"></h4>
 
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
@@ -46,8 +47,10 @@
           return 'Тепло';
         } else if (distance < 160) {
           return 'Холодно';
-        } else if (distance < 320) {
+        } else if (distance < 250) {
           return 'Очень холодно';
+        } else if (distance < 350) {
+          return 'Очень-очень холодно';
         } else {
           return 'Замерзнешь!';
         }
@@ -57,6 +60,7 @@
       var width = 400;
       var height = 400;
       var clicks = 0;
+      var maxclicks = 60;
 
       //задается случайная позиция клада
       var target = {
@@ -67,17 +71,21 @@
       //обработчик кликов мышкой по карте
       $('#map').click(function (event) {
         clicks++;
+        if (clicks > maxclicks) {
+          alert('Вы проиграли!');
+          return;
+        }
         //рассчитываем расстояние от места клика до координат клада
         var distance = getDistance(event, target);
-
         //преобразуем расстояние в подсказку
         var distanceHint = getDistanceHint(distance);
-
         //выводим новую подсказку в элемент distance
         $('#distance').text(distanceHint);
-
         //если клик был достаточно близко, то поздраляем с победой
-        if (distance < 8) {
+        $('#click_counter').text(
+          'Осталось ' + (maxclicks - clicks) + ' попыток'
+        );
+        if (distance < 10) {
           alert('Клад найден! Сделано кликов: ' + clicks);
         }
       });
