@@ -1,5 +1,7 @@
 var dog = {
   name: 'ШПАК',
+  sound: 'ГАВ ГАВ',
+  speak: speak,
   legs: 4,
   isAvesome: true,
 };
@@ -20,6 +22,18 @@ var speak = function () {
 var cat = {
   sound: 'МЯУ МЯУ',
   name: 'КОШАКА',
+  speak: speak,
+};
+
+var pig = {
+  sound: 'Хрю',
+  name: 'Чарли',
+  speak: speak,
+};
+
+var horse = {
+  sound: 'И-го-го',
+  name: 'Мэри',
   speak: speak,
 };
 
