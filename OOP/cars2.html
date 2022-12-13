@@ -9,10 +9,9 @@
   <body>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
-      var Car = function (x, y, s) {
+      var Car = function (x, y) {
         this.x = x;
         this.y = y;
-        this.speed = s;
         this.draw();
       };
 
@@ -32,8 +31,9 @@
       };
 
       //прототипы для перемещения изображения
-      Car.prototype.moveRight = function () {
+      Car.prototype.moveRight = function (s) {
         //вправо
+        this.speed = s;
         this.x += this.speed;
 
         this.carElement.css({
@@ -42,8 +42,9 @@
         });
       };
 
-      Car.prototype.moveLeft = function () {
+      Car.prototype.moveLeft = function (s) {
         //влево
+        this.speed = s;
         this.x -= this.speed;
 
         this.carElement.css({
@@ -52,8 +53,9 @@
         });
       };
 
-      Car.prototype.moveUp = function () {
+      Car.prototype.moveUp = function (s) {
         //вверх
+        this.speed = s;
         this.y -= this.speed;
 
         this.carElement.css({
@@ -62,8 +64,9 @@
         });
       };
 
-      Car.prototype.moveDown = function () {
+      Car.prototype.moveDown = function (s) {
         //вниз
+        this.speed = s;
         this.y += this.speed;
 
         this.carElement.css({
