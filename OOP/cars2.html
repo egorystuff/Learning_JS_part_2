@@ -14,6 +14,7 @@
         this.y = y;
       };
 
+      // прототип для вывода изображения
       Car.prototype.draw = function () {
         var carHtml = '<img src="http://nostarch.com/images/car.png">';
 
@@ -28,11 +29,53 @@
         $('body').append(this.carElement);
       };
 
+      //прототипы для перемещения изображения
+      Car.prototype.moveRight = function () {
+        //вправо
+        this.x += 5;
+
+        this.carElement.css({
+          left: this.x,
+          top: this.y,
+        });
+      };
+
+      Car.prototype.moveLeft = function () {
+        //влево
+        this.x -= 5;
+
+        this.carElement.css({
+          left: this.x,
+          top: this.y,
+        });
+      };
+
+      Car.prototype.moveUp = function () {
+        //вверх
+        this.y -= 5;
+
+        this.carElement.css({
+          left: this.x,
+          top: this.y,
+        });
+      };
+
+      Car.prototype.moveDown = function () {
+        //вниз
+        this.y += 5;
+
+        this.carElement.css({
+          left: this.x,
+          top: this.y,
+        });
+      };
+
       var tesla = new Car(20, 20);
       var nissan = new Car(100, 250);
 
       console.log(tesla.draw());
       console.log(nissan.draw());
+      console.log(tesla.moveRight());
     </script>
   </body>
 </html>
