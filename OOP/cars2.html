@@ -31,44 +31,36 @@
       };
 
       //прототипы для перемещения изображения
-      Car.prototype.moveRight = function (s) {
+      Car.prototype.moveRight = function (speed) {
         //вправо
-        this.speed = s;
         this.x += this.speed;
-
         this.carElement.css({
           left: this.x,
           top: this.y,
         });
       };
 
-      Car.prototype.moveLeft = function (s) {
+      Car.prototype.moveLeft = function (speed) {
         //влево
-        this.speed = s;
         this.x -= this.speed;
-
         this.carElement.css({
           left: this.x,
           top: this.y,
         });
       };
 
-      Car.prototype.moveUp = function (s) {
+      Car.prototype.moveUp = function (speed) {
         //вверх
-        this.speed = s;
         this.y -= this.speed;
-
         this.carElement.css({
           left: this.x,
           top: this.y,
         });
       };
 
-      Car.prototype.moveDown = function (s) {
+      Car.prototype.moveDown = function (speed) {
         //вниз
-        this.speed = s;
         this.y += this.speed;
-
         this.carElement.css({
           left: this.x,
           top: this.y,
@@ -77,6 +69,12 @@
 
       var tesla = new Car(20, 20, 50);
       var nissan = new Car(100, 200, 50);
+
+      var moving = function () {
+        tesla.moveRight(Math.random() * 5);
+      };
+
+      var time = setInterval(moving, 30);
 
       // console.log(tesla.draw());
       // console.log(nissan.draw());
