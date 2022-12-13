@@ -33,7 +33,7 @@
       //прототипы для перемещения изображения
       Car.prototype.moveRight = function (speed) {
         //вправо
-        this.x += this.speed;
+        this.x += speed;
         this.carElement.css({
           left: this.x,
           top: this.y,
@@ -42,7 +42,7 @@
 
       Car.prototype.moveLeft = function (speed) {
         //влево
-        this.x -= this.speed;
+        this.x -= speed;
         this.carElement.css({
           left: this.x,
           top: this.y,
@@ -51,7 +51,7 @@
 
       Car.prototype.moveUp = function (speed) {
         //вверх
-        this.y -= this.speed;
+        this.y -= speed;
         this.carElement.css({
           left: this.x,
           top: this.y,
@@ -60,21 +60,22 @@
 
       Car.prototype.moveDown = function (speed) {
         //вниз
-        this.y += this.speed;
+        this.y += speed;
         this.carElement.css({
           left: this.x,
           top: this.y,
         });
       };
 
-      var tesla = new Car(20, 20, 50);
-      var nissan = new Car(100, 200, 50);
+      var tesla = new Car(20, 20);
+      var nissan = new Car(100, 200);
 
       var moving = function () {
-        tesla.moveRight(Math.random() * 5);
+        tesla.moveRight(Math.random() * 10);
+        nissan.moveRight(Math.random() * 9);
       };
 
-      var time = setInterval(moving, 30);
+      setInterval(moving, 30);
 
       // console.log(tesla.draw());
       // console.log(nissan.draw());
