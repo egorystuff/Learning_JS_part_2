@@ -89,6 +89,23 @@
       circle(100, 300, 50);
       ctx.strokeStyle = 'Purple';
       circle(100, 300, 60);
+
+      var drawSnowman = function (a, b) {
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'Black';
+        ctx.fillStyle = 'Black';
+        circle(a, b, 40, 0);
+        circle(a, b + 100, 60, 0);
+        circle(a, b + 60, 10, 1);
+        circle(a, b + 90, 10, 1);
+        circle(a, b + 120, 10, 1);
+        circle(a - 20, b - 10, 5, 1);
+        circle(a + 20, b - 10, 5, 1);
+        ctx.fillStyle = 'Orange';
+        circle(a, b, 5, 1);
+      };
+
+      drawSnowman(550, 100);
     </script>
   </body>
 </html>
