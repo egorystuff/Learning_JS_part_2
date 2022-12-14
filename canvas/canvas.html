@@ -64,17 +64,23 @@
       ctx.stroke();
 
       // функция для рисования окружности
-      var circle = function (x, y, radius) {
+      var circle = function (x, y, radius, fillCircle) {
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-        ctx.stroke();
+        if (fillCircle === 1) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
       };
 
       ctx.lineWidth = 4;
-      ctx.strokeStyle = 'Red';
-      circle(100, 300, 10);
       ctx.strokeStyle = 'Orange';
-      circle(100, 300, 20);
+      ctx.fillStyle = 'Orange';
+      circle(100, 300, 20, 1);
+      ctx.strokeStyle = 'Red';
+      ctx.fillStyle = 'Red';
+      circle(100, 300, 10, 1);
       ctx.strokeStyle = 'Yellow';
       circle(100, 300, 30);
       ctx.strokeStyle = 'Green';
