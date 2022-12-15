@@ -137,6 +137,7 @@
         } else {
           organ6();
         }
+        incorrectGuesses++;
       };
 
       // word: загаданное слово
@@ -154,12 +155,12 @@
         var guess = getGuess();
 
         if (attemt === 0) {
-          organ1();
-          organ2();
-          organ3();
-          organ4();
-          organ5();
-          organ6();
+          // organ1();
+          // organ2();
+          // organ3();
+          // organ4();
+          // organ5();
+          // organ6();
           break;
         } else if (guess === null) {
           organ1();
@@ -171,21 +172,16 @@
           break;
         } else if (guess.length > 1) {
           alert('Пожалуйста, введите одиночную букву.');
+          drawSegment();
         } else {
           for (let j = 0; j < word.length; j++) {
             if (answerArray[j] === guess) {
               alert('Буква уже отгадана. Попробуйте другую букву');
+              drawSegment();
               break;
             } else if (word[j] === guess) {
               answerArray[j] = guess;
               remainingLetters--;
-            } else {
-              var correctGuesses = updateGameState(guess, word, answerArray);
-              remainingLetters -= correctGuesses;
-
-              //     if (correctGuesses === 0) {
-              // drawSegment(incorrectGuesses);
-              // incorrectGuesses++;
             }
           }
         }
