@@ -18,13 +18,14 @@
       var pickWord = function () {
         // Возвращает случайно выбранное слово
         var words = [
-          'изюм',
-          'программа',
-          'макака',
-          'прекрасный',
-          'оладушек',
-          'балалайка',
-          'анисковка',
+          'ff',
+          // 'изюм',
+          // 'программа',
+          // 'макака',
+          // 'прекрасный',
+          // 'оладушек',
+          // 'балалайка',
+          // 'анисковка',
         ];
 
         return words[Math.floor(Math.random() * words.length)];
@@ -58,6 +59,7 @@
 
       var updateGameState = function (guess, word, answerArray) {
         // Обновляет answerArray согласно ответу игрока (guess).  возвращает число, обозначающее, сколько раз буква guess встречается в слове, чтобы можно было обновить значение remainingLetters
+        guess = guess.toLowerCase();
         var appearances = 0;
         for (var j = 0; j < word.length; j++) {
           if (word[j] === guess) {
@@ -80,13 +82,69 @@
         }
       };
 
+      // рисуем органы тела
+      var organ1 = function () {
+        ctx.strokeRect(100, 10, 50, 50);
+      };
+
+      var organ2 = function () {
+        ctx.beginPath();
+        ctx.moveTo(125, 60);
+        ctx.lineTo(125, 150);
+        ctx.stroke();
+      };
+
+      var organ3 = function () {
+        ctx.beginPath();
+        ctx.moveTo(125, 150);
+        ctx.lineTo(80, 250);
+        ctx.stroke();
+      };
+
+      var organ4 = function () {
+        ctx.beginPath();
+        ctx.moveTo(125, 150);
+        ctx.lineTo(170, 250);
+        ctx.stroke();
+      };
+
+      var organ5 = function () {
+        ctx.beginPath();
+        ctx.moveTo(125, 100);
+        ctx.lineTo(60, 80);
+        ctx.stroke();
+      };
+
+      var organ6 = function () {
+        ctx.beginPath();
+        ctx.moveTo(125, 100);
+        ctx.lineTo(190, 80);
+        ctx.stroke();
+      };
+
+      var drawSegment = function (incorrectGuesses) {
+        ctx.lineWidth = 4;
+        if (incorrectGuesses === 1) {
+          organ1();
+        } else if (incorrectGuesses === 2) {
+          organ2();
+        } else if (incorrectGuesses === 3) {
+          organ3;
+        } else if (incorrectGuesses === 4) {
+          organ4;
+        } else if (incorrectGuesses === 5) {
+          organ5;
+        } else {
+          organ6();
+        }
+      };
+
       // word: загаданное слово
       var word = pickWord();
-      // answerArray: итоговый массив
       var answerArray = setupAnswerArray(word);
-      // remainingLetters: сколько букв осталось угадать
       var remainingLetters = word.length;
-      let attemt = word.length + 3;
+      let attemt = word.length + 4;
+      var incorrectGuesses = 0;
 
       while (remainingLetters > 0 && attemt > 0) {
         showPlayerProgress(answerArray);
@@ -96,9 +154,22 @@
         var guess = getGuess();
 
         if (attemt === 0) {
+          organ1();
+          organ2();
+          organ3();
+          organ4();
+          organ5();
+          organ6();
+          break;
+        } else if (guess === null) {
+          organ1();
+          organ2();
+          organ3();
+          organ4();
+          organ5();
+          organ6();
           break;
         } else if (guess.length > 1) {
-          guess = guess.toLowerCase();
           alert('Пожалуйста, введите одиночную букву.');
         } else {
           for (let j = 0; j < word.length; j++) {
@@ -108,14 +179,17 @@
             } else if (word[j] === guess) {
               answerArray[j] = guess;
               remainingLetters--;
+            } else {
+              var correctGuesses = updateGameState(guess, word, answerArray);
+              remainingLetters -= correctGuesses;
+
+              //     if (correctGuesses === 0) {
+              // drawSegment(incorrectGuesses);
+              // incorrectGuesses++;
             }
           }
         }
       }
-
-      ctx.fillRect(100, 100, 50, 50);
-      ctx.stroke();
-
       showAnswerAndCongratulatePlayer(answerArray);
     </script>
   </body>
