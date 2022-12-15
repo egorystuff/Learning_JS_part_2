@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas part 2</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="700" height="700"></canvas>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+      ctx.strokeStyle = 'Turquoise';
+      var circle = function (pageX, pageY) {
+        ctx.beginPath();
+        ctx.fill();
+        ctx.arc(pageX, pageY, 3, 0, Math.PI * 2, false);
+      };
+
+      $('html').click(function (event) {
+        $(circle).offset({
+          left: event.pageX,
+          top: event.pageY,
+        });
+      });
+    </script>
+  </body>
+</html>
