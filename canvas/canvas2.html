@@ -12,18 +12,18 @@
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
     <script>
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
       ctx.strokeStyle = 'Turquoise';
-      var circle = function (pageX, pageY) {
+      var circle = function (x, y) {
         ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2, false);
         ctx.fill();
-        ctx.arc(pageX, pageY, 3, 0, Math.PI * 2, false);
       };
 
-      $('html').click(function (event) {
-        $(circle).offset({
-          left: event.pageX,
-          top: event.pageY,
-        });
+      $('canvas').click(function (event) {
+        circle(event.offsetX, event.offsetY);
       });
     </script>
   </body>
