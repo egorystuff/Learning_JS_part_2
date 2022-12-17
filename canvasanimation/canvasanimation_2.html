@@ -7,7 +7,7 @@
     <title>Canvas animation. Lesson 14</title>
   </head>
   <body>
-    <canvas id="canvas" width="200" height="200"></canvas>
+    <canvas id="canvas" width="400" height="400"></canvas>
 
     <script>
       var canvas = document.getElementById('canvas');
@@ -39,7 +39,28 @@
       var update = function (coordinate) {
         var offset = Math.random() * 4 - 2;
         coordinate += offset;
+
+        if (coordinate > 200) {
+          coordinate = 200;
+        }
+
+        if (coordinate < 0) {
+          coordinate = 0;
+        }
+
+        return coordinate;
       };
+
+      var x = 100;
+      var y = 100;
+
+      setInterval(function () {
+        ctx.clearRect(0, 0, 220, 220);
+        drawBee(x, y);
+        x = update(x);
+        y = update(y);
+        ctx.strokeRect(0, 0, 220, 220);
+      }, 1);
     </script>
   </body>
 </html>
