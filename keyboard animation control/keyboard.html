@@ -50,6 +50,10 @@
           this.y = 0;
         }
       };
+
+      Ball.prototype.draw = function () {
+        circle(this.x, this.y, 10, true);
+      };
     </script>
   </body>
 </html>
