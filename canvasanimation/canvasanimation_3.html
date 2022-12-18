@@ -10,11 +10,33 @@
     <canvas id="canvas" width="200" height="200"></canvas>
 
     <script>
+      //конструктор Ball
       var Ball = function () {
         this.x = 100;
         this.y = 100;
         this.xSpeed = -2;
         this.ySpeed = 3;
+      };
+
+      var circle = function (x, y, radius, fillCircle) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+        if (fillCircle) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
+      };
+
+      //добавляем метод draw к свойству prototype конструктора Ball
+      Ball.prototype.draw = function () {
+        circle(this.x, this.y, 3, true);
+      };
+
+      //добавляем метод move к свойству prototype конструктора Ball
+      Ball.prototype.move = function () {
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
       };
     </script>
   </body>
