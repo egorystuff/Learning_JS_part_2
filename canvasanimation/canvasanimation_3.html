@@ -12,10 +12,10 @@
     <script>
       //конструктор Ball
       var Ball = function () {
-        this.x = 100;
-        this.y = 100;
-        this.xSpeed = -2;
-        this.ySpeed = 3;
+        this.x = width / 2;
+        this.y = height / 2;
+        this.xSpeed = Math.random() * 10 - 5;
+        this.ySpeed = Math.random() * 10 - 5;
       };
 
       var circle = function (x, y, radius, fillCircle) {
@@ -56,14 +56,19 @@
       var height = canvas.height;
 
       //создаем новый объект
-      let ball = new Ball();
+      let balls = [];
+      for (let i = 0; i < 10; i++) {
+        balls[i] = new Ball();
+      }
 
       setInterval(function () {
         ctx.clearRect(0, 0, width, height);
 
-        ball.draw();
-        ball.move();
-        ball.checkCollision();
+        for (let i = 0; i < balls.length; i++) {
+          balls[i].draw();
+          balls[i].move();
+          balls[i].checkCollision();
+        }
 
         ctx.strokeRect(0, 0, width, height);
       }, 5);
