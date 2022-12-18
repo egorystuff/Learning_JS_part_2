@@ -30,7 +30,7 @@
 
       //добавляем метод draw к свойству prototype конструктора Ball
       Ball.prototype.draw = function () {
-        circle(this.x, this.y, 3, true);
+        circle(this.x, this.y, 10, true);
       };
 
       //добавляем метод move к свойству prototype конструктора Ball
@@ -38,6 +38,31 @@
         this.x += this.xSpeed;
         this.y += this.ySpeed;
       };
+
+      //метод для проверски столкновения мяча с границей. и его инвертирование в случае положительного ответа
+      Ball.prototype.checkCollision = function () {
+        if (this.x < 0 || this.x > 200) {
+          this.xSpeed = -this.xSpeed;
+        }
+        if (this.y < 0 || this.y > 200) {
+          this.ySpeed = -this.ySpeed;
+        }
+      };
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
+      let ball = new Ball();
+
+      setInterval(function () {
+        ctx.clearRect(0, 0, 200, 200);
+
+        ball.draw();
+        ball.move();
+        ball.checkCollision();
+
+        ctx.strokeRect(0, 0, 200, 200);
+      }, 5);
     </script>
   </body>
 </html>
