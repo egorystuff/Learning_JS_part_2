@@ -10,12 +10,21 @@
     <canvas id="canvas" width="500" height="300"></canvas>
 
     <script>
+      //функция для выбора случайного слова из массива
+      var pickRandomWord = function (words) {
+        return words[Math.floor(Math.random() * words.length)];
+      };
+
+      //массив цветов для мячей
+      var colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple'];
+
       //конструктор Ball
       var Ball = function () {
         this.x = width / 2;
         this.y = height / 2;
         this.xSpeed = Math.random() * 10 - 5;
         this.ySpeed = Math.random() * 10 - 5;
+        this.color = pickRandomWord(colors);
       };
 
       var circle = function (x, y, radius, fillCircle) {
@@ -30,6 +39,7 @@
 
       //добавляем метод draw к свойству prototype конструктора Ball
       Ball.prototype.draw = function () {
+        ctx.fillStyle = this.color;
         circle(this.x, this.y, 10, true);
       };
 
@@ -55,12 +65,13 @@
       var width = canvas.width;
       var height = canvas.height;
 
-      //создаем новый объект
+      //создаем массив новых объектов
       let balls = [];
       for (let i = 0; i < 10; i++) {
         balls[i] = new Ball();
       }
 
+      // метод интервал для массива объеков
       setInterval(function () {
         ctx.clearRect(0, 0, width, height);
 
