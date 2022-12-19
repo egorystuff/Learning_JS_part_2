@@ -34,6 +34,7 @@
         this.xSpeed = 5;
         this.ySpeed = 0;
         this.speed = 5;
+        this.size = 10;
       };
 
       Ball.prototype.move = function () {
@@ -60,35 +61,47 @@
 
       // рисуем мяч
       Ball.prototype.draw = function () {
-        circle(this.x, this.y, 10, true);
+        circle(this.x, this.y, this.size, true);
       };
 
       //указываем направление мяча
-      Ball.prototype.setDirection = function (direction, speed) {
-        if (direction === 'up') {
+      Ball.prototype.setActions = function (action) {
+        if (action === 'up') {
           this.xSpeed = 0;
           this.ySpeed = -5;
-        } else if (direction === 'down') {
+        } else if (action === 'down') {
           this.xSpeed = 0;
           this.ySpeed = 5;
-        } else if (direction === 'left') {
+        } else if (action === 'left') {
           this.xSpeed = -5;
           this.ySpeed = 0;
-        } else if (direction === 'right') {
+        } else if (action === 'right') {
           this.xSpeed = 5;
           this.ySpeed = 0;
-        } else if (direction === 'stop') {
+        } else if (action === 'stop') {
           this.xSpeed = 0;
           this.ySpeed = 0;
+        } else if (action === 'faster') {
+          this.speed++;
+        } else if (action === 'slower') {
+          if (this.speed > 0) {
+            this.speed--;
+          }
+        } else if (action === 'less') {
+          if (this.size > 0) {
+            this.size--;
+          }
+        } else if (action === 'more') {
+          this.size++;
         }
       };
 
       //задаем новую скорость
-      Ball.prototype.setSpeed = function (newSpeed) {
-        if (newSpeed !== undefined) {
-          this.speed = newSpeed;
-        }
-      };
+      // Ball.prototype.setSpeed = function (newSpeed) {
+      //   if (newSpeed !== undefined) {
+      //     this.speed = newSpeed;
+      //   }
+      // };
 
       var ball = new Ball();
 
@@ -98,25 +111,27 @@
         38: 'up',
         39: 'right',
         40: 'down',
+        88: 'faster',
+        90: 'slower',
+        67: 'less',
+        86: 'more',
       };
 
-      var speeds = {
-        49: 1,
-        50: 2,
-        51: 3,
-        52: 4,
-        53: 5,
-        54: 6,
-        55: 7,
-        56: 8,
-        57: 9,
-      };
+      // var speeds = {
+      //   49: 1,
+      //   50: 2,
+      //   51: 3,
+      //   52: 4,
+      //   53: 5,
+      //   54: 6,
+      //   55: 7,
+      //   56: 8,
+      //   57: 9,
+      // };
 
       $('body').keydown(function (event) {
-        var direction = keyActions[event.keyCode];
-        var speed = speeds[event.keyCode];
-        ball.setDirection(direction);
-        ball.setSpeed(speed);
+        var action = keyActions[event.keyCode];
+        ball.setDirection(action);
       });
 
       setInterval(function () {
