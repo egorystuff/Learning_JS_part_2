@@ -131,7 +131,7 @@
 
       $('body').keydown(function (event) {
         var action = keyActions[event.keyCode];
-        ball.setDirection(action);
+        ball.setActions(action);
       });
 
       setInterval(function () {
