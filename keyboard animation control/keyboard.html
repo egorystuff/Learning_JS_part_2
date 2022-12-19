@@ -58,10 +58,12 @@
         // }
       };
 
+      // рисуем мяч
       Ball.prototype.draw = function () {
         circle(this.x, this.y, 10, true);
       };
 
+      //указываем направление мяча
       Ball.prototype.setDirection = function (direction, speed) {
         if (direction === 'up') {
           this.xSpeed = 0;
@@ -78,6 +80,13 @@
         } else if (direction === 'stop') {
           this.xSpeed = 0;
           this.ySpeed = 0;
+        }
+      };
+
+      //задаем новую скорость
+      Ball.prototype.setSpeed = function (newSpeed) {
+        if (newSpeed !== undefined) {
+          this.speed = newSpeed;
         }
       };
 
@@ -105,12 +114,9 @@
 
       $('body').keydown(function (event) {
         var direction = keyActions[event.keyCode];
-        ball.setDirection(direction);
-      });
-
-      $('body').keydown(function (event) {
         var speed = speeds[event.keyCode];
-        ball.setDirection(speed);
+        ball.setDirection(direction);
+        ball.setSpeed(speed);
       });
 
       setInterval(function () {
@@ -118,7 +124,7 @@
         ball.draw();
         ball.move();
         ctx.strokeRect(0, 0, width, height);
-      }, 5);
+      }, 30);
     </script>
   </body>
 </html>
