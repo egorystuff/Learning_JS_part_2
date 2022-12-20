@@ -37,8 +37,22 @@
         ctx.textBaseline = 'top';
         ctx.fillText('Счет: ' + score, blockSize, blockSize);
       };
-      drawScore();
-      drawBorder();
+
+      let gameOver = function () {
+        clearInterval(intervalId);
+        ctx.font = '60px Arial';
+        ctx.fillStyle = 'Black';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Конец игры', width / 2, height / 2);
+      };
+
+      setInterval(function () {
+        ctx.clearRect(0, 0, width, height);
+        drawBorder();
+        drawScore();
+        score++;
+      }, 100);
     </script>
   </body>
 </html>
