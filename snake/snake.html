@@ -88,6 +88,13 @@
         return this.col === otherBlock.col && this.row === otherBlock.row;
       };
 
+      //конструктор для создания объекта-змейки
+      var Snake = function () {
+        this.segments = [new Block(7, 5), new Block(6, 5), new Block(5, 5)];
+        this.direction = 'right';
+        this.nextDirection = 'right';
+      };
+
       var sampleBlock = new Block(3, 4);
       sampleBlock.drawSquare('LightBlue');
 
