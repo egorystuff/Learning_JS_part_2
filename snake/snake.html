@@ -40,7 +40,7 @@
         ctx.fillText('Счет: ' + score, blockSize, blockSize);
       };
 
-      //функция для вывода текста
+      //функция для вывода текста и окончания игры
       let gameOver = function () {
         clearInterval(intervalId);
         ctx.font = '60px Arial';
@@ -94,6 +94,22 @@
         this.direction = 'right';
         this.nextDirection = 'right';
       };
+
+      //функция-рисуем змейку
+      Snake.prototype.draw = function () {
+        for (let i = 0; i < this.segments.length; i++) {
+          this.segments[i].drawSquare('Blue');
+        }
+      };
+
+      //метод для перемещения змейки
+      Snake.prototype.move = function () {
+        let head = this.segments[0];
+        let newHead;
+      };
+
+      var snake = new Snake();
+      snake.draw();
 
       var sampleBlock = new Block(3, 4);
       sampleBlock.drawSquare('LightBlue');
