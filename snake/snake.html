@@ -22,6 +22,7 @@
       let heightInBlocks = height / blockSize;
       let score = 0;
 
+      //рисует границы
       let drawBorder = function () {
         ctx.fillStyle = 'Gray';
         ctx.fillRect(0, 0, width, blockSize);
@@ -30,6 +31,7 @@
         ctx.fillRect(width - blockSize, 0, blockSize, height);
       };
 
+      //функция для вывода текста
       let drawScore = function () {
         ctx.font = '20px Arial';
         ctx.fillStyle = 'Black';
@@ -38,6 +40,7 @@
         ctx.fillText('Счет: ' + score, blockSize, blockSize);
       };
 
+      //функция для вывода текста
       let gameOver = function () {
         clearInterval(intervalId);
         ctx.font = '60px Arial';
@@ -47,11 +50,28 @@
         ctx.fillText('Конец игры', width / 2, height / 2);
       };
 
+      //конструктор дл создани объектов в ячейках
+      var Block = function (col, row) {
+        this.col = col;
+        this.row = row;
+      };
+
+      //прототип для рисования квадрата в ячейке
+      Block.prototype.drawSquare = function (color) {
+        let x = this.col * blockSize;
+        let y = this.row * blockSize;
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, blockSize, blockSize);
+      };
+
+      var sampleBlock = new Block(3, 4);
+      sampleBlock.drawSquare('LightBlue');
+
       setInterval(function () {
-        ctx.clearRect(0, 0, width, height);
+        // ctx.clearRect(0, 0, width, height);
         drawBorder();
         drawScore();
-        score++;
+        // score++;
       }, 100);
     </script>
   </body>
