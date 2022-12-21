@@ -64,13 +64,40 @@
         ctx.fillRect(x, y, blockSize, blockSize);
       };
 
+      // функция для рисования окружности
+      var circle = function (x, y, radius, fillCircle) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+        if (fillCircle) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
+      };
+
+      //прототип для рисования окружности в ячейке
+      Block.prototype.drawCircle = function (color) {
+        let centerX = this.col * blockSize + blockSize / 2;
+        let centerY = this.row * blockSize + blockSize / 2;
+        ctx.fillStyle = color;
+        circle(centerX, centerY, blockSize / 2, true);
+      };
+
+      //метод-прототип для проверки совпадения позиций объектов
+      Block.prototype.equal = function (otherBlock) {
+        return this.col === otherBlock.col && this.row === otherBlock.row;
+      };
+
       var sampleBlock = new Block(3, 4);
       sampleBlock.drawSquare('LightBlue');
+
+      var sampleCircle = new Block(10, 3);
+      sampleCircle.drawCircle('LightGreen');
 
       setInterval(function () {
         // ctx.clearRect(0, 0, width, height);
         drawBorder();
-        drawScore();
+        // drawScore();
         // score++;
       }, 100);
     </script>
